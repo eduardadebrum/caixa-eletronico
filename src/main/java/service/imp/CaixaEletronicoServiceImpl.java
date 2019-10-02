@@ -25,7 +25,7 @@ public class CaixaEletronicoServiceImpl implements CaixaEletronicoService {
     private List<Cedula> cedulas;
 
     CaixaEletronicoServiceImpl() {
-        this.cedulas = new ArrayList<>();
+        this.cedulas = depositoEmCaixa(5);
     }
 
     @Override

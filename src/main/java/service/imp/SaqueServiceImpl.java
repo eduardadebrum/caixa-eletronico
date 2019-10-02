@@ -29,8 +29,6 @@ public class SaqueServiceImpl implements SaqueService {
     public List<Cedula> sacar(Integer valor) {
         List<Cedula> cedulasRecidas = new ArrayList<>();
 
-        caixaEletronicoService.depositoEmCaixa(5);
-
         isValidateValorSaque(valor);
         caixaEletronicoService.existsSaldoSuficienteEmCaixa(valor);
         CaixaEletronico detalhesCaixaEletronico = caixaEletronicoService.getDetalhesCaixaEletronico();
