@@ -24,10 +24,35 @@ Para baixar as dependências do projeto pode ser executado o seguinte comando at
 /.gradlew clean build
 ```
 
-#### Execução dos Testes
+### Execução dos Testes
 Foram desenvolvimento testes unitários utilizando **Junit e o Mockito**. Para os testes automatizados foi utilizado o **Cucumber**.
 
-##### Testes Unitários
+Para executar os testes pelo terminal deve ser utilizado o seguinte comando:
 
-  
-##### Testes Automatizados  
+```
+./gradlew clean test --info
+```
+
+#### Testes Unitários
+
+Testes unitários com os cenários principal e de excessão.
+
+![alt text](https://github.com/eduardadebrum/caixa-eletronico/blob/master/img/unit/Captura%20de%20tela%20de%202019-10-03%2003-07-31.png)
+
+Essa imagem mostra a cobertura dos testes unitários:
+
+![alt text](https://github.com/eduardadebrum/caixa-eletronico/blob/master/img/unit/Captura%20de%20tela%20de%202019-10-03%2003-08-00.png)
+
+
+#### Testes Automatizados  
+
+Cenários desenvolvidos para os testes automatizados.
+
+![alt text](https://github.com/eduardadebrum/caixa-eletronico/blob/master/img/integration/Captura%20de%20tela%20de%202019-10-03%2003-07-02.png)
+
+Toda vez que os testes são executados é criado um relatório com a informações do cenários implementados.
+
+![alt text](https://github.com/eduardadebrum/caixa-eletronico/blob/master/img/integration/Captura%20de%20tela%20de%202019-10-03%2003-49-21.png)
+
+![alt text](https://github.com/eduardadebrum/caixa-eletronico/blob/master/img/integration/Captura%20de%20tela%20de%202019-10-03%2003-50-20.png)
+
