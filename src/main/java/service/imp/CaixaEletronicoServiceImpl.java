@@ -52,18 +52,18 @@ public class CaixaEletronicoServiceImpl implements CaixaEletronicoService {
 
     @Override
     public List<Cedula> depositoEmCaixa(Integer quantidade) {
+        List<Cedula> cedulas = new ArrayList<>();
         if (Objects.nonNull(quantidade) && quantidade > 0) {
             cedulas.add(new Cedula(10, quantidade));
             cedulas.add(new Cedula(20, quantidade));
             cedulas.add(new Cedula(50, quantidade));
             cedulas.add(new Cedula(100, quantidade));
 
-            this.cedulas = cedulas.stream().sorted(Comparator.comparingInt(Cedula::getValor)
+            cedulas = cedulas.stream().sorted(Comparator.comparingInt(Cedula::getValor)
                     .reversed())
                     .collect(Collectors.toList());
             return cedulas;
         }
-
 
         throw new CaixaEletronicoException("Deposito no caixa eletronico inválido. Quantidade de notas não informada");
     }

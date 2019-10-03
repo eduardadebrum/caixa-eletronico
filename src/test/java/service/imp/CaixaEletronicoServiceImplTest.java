@@ -64,7 +64,6 @@ public class CaixaEletronicoServiceImplTest {
         caixaEletronicoService.depositoEmCaixa(quantidade);
     }
 
-
     private List<Cedula> createCedulasEmCaixa(Integer quantidade) {
         CaixaEletronicoServiceImpl caixaEletronicoService = new CaixaEletronicoServiceImpl();
         return caixaEletronicoService.depositoEmCaixa(quantidade);

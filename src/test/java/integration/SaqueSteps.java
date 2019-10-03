@@ -1,37 +1,41 @@
-package service.imp;
+package integration;
 
-import io.cucumber.java8.En;
 import dto.Cedula;
-import exception.SaqueException;
 import io.cucumber.datatable.DataTable;
-import org.junit.Assert;
+import io.cucumber.java8.En;
+import service.imp.SaqueServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Classe que executa os testes automatizados de saque.
  *
  * @author Eduarda de Brum Lucena
  */
-public class SaqueIntegrationSteps implements En {
+public class SaqueSteps implements En {
 
     private List<Cedula> cedulasResult;
     private List<Cedula> cedulasExcepted;
 
     private SaqueServiceImpl saqueService;
 
-    public SaqueIntegrationSteps() {
+    public SaqueSteps() {
 
         Given("^Dado que o cliente precisa sacar dinheiro$", () -> {
             this.saqueService = new SaqueServiceImpl();
         });
 
         And("^O cliente informa o saque no valor R\\$ (\\d+)$", (Integer saque) -> {
-            this.cedulasResult = saqueService.sacar(saque);
+            try {
+                this.cedulasResult = saqueService.sacar(saque);
+            } catch (Exception e) {
+                assertEquals("Saldo em Caixa Insuficiente", e.getLocalizedMessage());
+            }
         });
 
         When("^quando o caixa emitir as notas$", (DataTable table) -> {
@@ -41,6 +45,7 @@ public class SaqueIntegrationSteps implements En {
         Then("^o caixa entrega o menor número de notas$", () -> {
             assertTrue(this.cedulasResult.containsAll(this.cedulasExcepted));
         });
+
         When("^O cliente informa o saque no valor R\\$ (\\d+) o caixa não permite o saque$", (Integer saque) -> {
             try {
                 saqueService.sacar(saque);
@@ -49,6 +54,13 @@ public class SaqueIntegrationSteps implements En {
             }
         });
 
+        When("^O cliente informa o saque no valor R\\$ (\\d+) o valor informado não é permitido para saque$", (Integer saque) -> {
+            try {
+                saqueService.sacar(saque);
+            } catch (Exception e) {
+                assertEquals("Valor de Saque Inválido.", e.getLocalizedMessage());
+            }
+        });
     }
 
     private List<Cedula> converter(List<Map<String, String>> maps) {

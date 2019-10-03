@@ -47,7 +47,6 @@ public class SaqueServiceImplTest {
     @Test
     public void shouldSuccessWhenSaqueETrintaReais() {
         when(caixaEletronicoService.existsSaldoSuficienteEmCaixa(any())).thenReturn(true);
-        when(caixaEletronicoService.depositoEmCaixa(any())).thenReturn(createCedulasEmCaixa());
         when(caixaEletronicoService.getDetalhesCaixaEletronico()).thenReturn(new CaixaEletronico(createCedulasEmCaixa()));
 
         List<Cedula> cedulasRecebidas = saqueService.sacar(30);
@@ -61,7 +60,6 @@ public class SaqueServiceImplTest {
     public void shouldSuccessWhenSaqueEOitentaReais() {
 
         when(caixaEletronicoService.existsSaldoSuficienteEmCaixa(any())).thenReturn(true);
-        when(caixaEletronicoService.depositoEmCaixa(any())).thenReturn(createCedulasEmCaixa());
         when(caixaEletronicoService.getDetalhesCaixaEletronico()).thenReturn(new CaixaEletronico(createCedulasEmCaixa()));
 
         List<Cedula> cedulasRecebidas = saqueService.sacar(80);
